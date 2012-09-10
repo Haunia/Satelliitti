@@ -1,0 +1,9 @@
+Welcome!
+
+This project is part of a bigger project called Aalto-1 wich is the 
+Finland's first satellite project.
+
+What we do here is use Arduino to read and process sensors such as 
+light sensors, temperature sensors, gyroscope ang lightning sensor 
+AS3935.
+
