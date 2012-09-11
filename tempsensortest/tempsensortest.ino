@@ -10,8 +10,11 @@ void loop() {
   sensorValue = analogRead(sensorPin);    
   delay(1000); // Display value every 1 second.
   Serial.print("Current temperature is: ");  
-  Serial.print(readVcc()*sensorValue*100.0/1024); // Analog resolution is 1024.
+  Serial.print((readVcc()/1000.0)*sensorValue*100.0/1024); // Analog resolution is 1024.
   Serial.print(" Degrees celsius"); 
+  Serial.println("");
+  Serial.print("Voltage in Vcc: ");
+  Serial.print(readVcc()/1000.0); // Convert from mV to V.
   Serial.println("");
 }
 long readVcc() { // Arduino has integrated voltage monitoring. For more accurate temp
@@ -23,8 +26,7 @@ long readVcc() { // Arduino has integrated voltage monitoring. For more accurate
   while (bit_is_set(ADCSRA,ADSC));
   result = ADCL;
   result |= ADCH<<8;
-  result = 1126400L / result;
-  result = result / 1000; // Back-calculate AVcc in mV
+  result = 1126400L / result; // Back-calculate AVcc in mV
   return result;
 }
 
